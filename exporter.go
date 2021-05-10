@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 type gauges map[string]prometheus.Gauge
@@ -40,7 +41,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	http.Handle("/metrics", prometheus.Handler())
+	http.Handle("/metrics", promhttp.Handler())
 
 	g := make(gauges)
 
