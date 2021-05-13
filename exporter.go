@@ -84,7 +84,9 @@ func main() {
 				for k, v := range data {
 					if value, ok := v.(float64); ok {
 						g.get(k).Set(value)
-					}
+					} else if value, ok := v.([]interface{}); ok {
+						g.get(k).Set(float64(len(value)))
+					} 
 				}
 			}()
 
